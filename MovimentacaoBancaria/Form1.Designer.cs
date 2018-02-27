@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
@@ -54,6 +55,7 @@
             this.btnListarClientes = new System.Windows.Forms.Button();
             this.btnIncluirCliente = new System.Windows.Forms.Button();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.txtExtrato = new System.Windows.Forms.TextBox();
             this.btnGravarExtrato = new System.Windows.Forms.Button();
             this.btnExibirExtrato = new System.Windows.Forms.Button();
             this.btnExecOpe = new System.Windows.Forms.Button();
@@ -62,10 +64,12 @@
             this.rdbContaComum = new System.Windows.Forms.RadioButton();
             this.btnListarContas = new System.Windows.Forms.Button();
             this.btnIncluirConta = new System.Windows.Forms.Button();
-            this.listBoxResultado = new System.Windows.Forms.ListBox();
+            this.tipoOperacaoBindingSource = new System.Windows.Forms.BindingSource(this.components);
+            this.saveFileDialog1 = new System.Windows.Forms.SaveFileDialog();
             this.groupBox1.SuspendLayout();
             this.groupBox2.SuspendLayout();
             this.groupBox3.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoOperacaoBindingSource)).BeginInit();
             this.SuspendLayout();
             // 
             // label2
@@ -182,9 +186,11 @@
             // 
             this.txtCpf.Location = new System.Drawing.Point(124, 75);
             this.txtCpf.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtCpf.MaxLength = 11;
             this.txtCpf.Name = "txtCpf";
             this.txtCpf.Size = new System.Drawing.Size(212, 26);
             this.txtCpf.TabIndex = 14;
+            this.txtCpf.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtCpf_KeyPress);
             this.txtCpf.Leave += new System.EventHandler(this.txtCpf_Leave);
             // 
             // txtNome
@@ -212,30 +218,37 @@
             this.txtValor.Name = "txtValor";
             this.txtValor.Size = new System.Drawing.Size(178, 26);
             this.txtValor.TabIndex = 17;
+            this.txtValor.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtValor_KeyPress);
             // 
             // txtBanco
             // 
             this.txtBanco.Location = new System.Drawing.Point(124, 426);
             this.txtBanco.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtBanco.MaxLength = 5;
             this.txtBanco.Name = "txtBanco";
             this.txtBanco.Size = new System.Drawing.Size(148, 26);
             this.txtBanco.TabIndex = 18;
+            this.txtBanco.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtBanco_KeyPress);
             // 
             // txtAgencia
             // 
             this.txtAgencia.Location = new System.Drawing.Point(366, 426);
             this.txtAgencia.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtAgencia.MaxLength = 5;
             this.txtAgencia.Name = "txtAgencia";
             this.txtAgencia.Size = new System.Drawing.Size(148, 26);
             this.txtAgencia.TabIndex = 19;
+            this.txtAgencia.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtAgencia_KeyPress);
             // 
             // txtConta
             // 
             this.txtConta.Location = new System.Drawing.Point(124, 485);
             this.txtConta.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.txtConta.MaxLength = 6;
             this.txtConta.Name = "txtConta";
             this.txtConta.Size = new System.Drawing.Size(148, 26);
             this.txtConta.TabIndex = 20;
+            this.txtConta.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtConta_KeyPress);
             // 
             // txtLimite
             // 
@@ -244,6 +257,7 @@
             this.txtLimite.Name = "txtLimite";
             this.txtLimite.Size = new System.Drawing.Size(148, 26);
             this.txtLimite.TabIndex = 21;
+            this.txtLimite.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtLimite_KeyPress);
             // 
             // cbxConta
             // 
@@ -309,6 +323,7 @@
             // 
             // groupBox2
             // 
+            this.groupBox2.Controls.Add(this.txtExtrato);
             this.groupBox2.Controls.Add(this.btnGravarExtrato);
             this.groupBox2.Controls.Add(this.cbxOperacao);
             this.groupBox2.Controls.Add(this.btnExibirExtrato);
@@ -322,10 +337,19 @@
             this.groupBox2.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.groupBox2.Name = "groupBox2";
             this.groupBox2.Padding = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.groupBox2.Size = new System.Drawing.Size(626, 243);
+            this.groupBox2.Size = new System.Drawing.Size(626, 565);
             this.groupBox2.TabIndex = 26;
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "Movimentação:";
+            // 
+            // txtExtrato
+            // 
+            this.txtExtrato.Enabled = false;
+            this.txtExtrato.Location = new System.Drawing.Point(18, 253);
+            this.txtExtrato.Multiline = true;
+            this.txtExtrato.Name = "txtExtrato";
+            this.txtExtrato.Size = new System.Drawing.Size(590, 304);
+            this.txtExtrato.TabIndex = 31;
             // 
             // btnGravarExtrato
             // 
@@ -336,6 +360,7 @@
             this.btnGravarExtrato.TabIndex = 30;
             this.btnGravarExtrato.Text = "Gravar Extrato";
             this.btnGravarExtrato.UseVisualStyleBackColor = true;
+            this.btnGravarExtrato.Click += new System.EventHandler(this.btnGravarExtrato_Click);
             // 
             // btnExibirExtrato
             // 
@@ -346,6 +371,7 @@
             this.btnExibirExtrato.TabIndex = 29;
             this.btnExibirExtrato.Text = "Exibir Extrato";
             this.btnExibirExtrato.UseVisualStyleBackColor = true;
+            this.btnExibirExtrato.Click += new System.EventHandler(this.btnExibirExtrato_Click);
             // 
             // btnExecOpe
             // 
@@ -356,6 +382,7 @@
             this.btnExecOpe.TabIndex = 28;
             this.btnExecOpe.Text = "Executar Operação";
             this.btnExecOpe.UseVisualStyleBackColor = true;
+            this.btnExecOpe.Click += new System.EventHandler(this.btnExecOpe_Click);
             // 
             // groupBox3
             // 
@@ -386,6 +413,7 @@
             this.rdbContaEspecial.TabStop = true;
             this.rdbContaEspecial.Text = "Conta Especial";
             this.rdbContaEspecial.UseVisualStyleBackColor = true;
+            this.rdbContaEspecial.CheckedChanged += new System.EventHandler(this.rdbContaEspecial_CheckedChanged);
             // 
             // rdbContaComum
             // 
@@ -399,6 +427,7 @@
             this.rdbContaComum.TabStop = true;
             this.rdbContaComum.Text = "Conta Comum";
             this.rdbContaComum.UseVisualStyleBackColor = true;
+            this.rdbContaComum.CheckedChanged += new System.EventHandler(this.rdbContaComum_CheckedChanged);
             // 
             // btnListarContas
             // 
@@ -421,22 +450,20 @@
             this.btnIncluirConta.UseVisualStyleBackColor = true;
             this.btnIncluirConta.Click += new System.EventHandler(this.btnIncluirConta_Click);
             // 
-            // listBoxResultado
+            // tipoOperacaoBindingSource
             // 
-            this.listBoxResultado.FormattingEnabled = true;
-            this.listBoxResultado.ItemHeight = 20;
-            this.listBoxResultado.Location = new System.Drawing.Point(570, 305);
-            this.listBoxResultado.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.listBoxResultado.Name = "listBoxResultado";
-            this.listBoxResultado.Size = new System.Drawing.Size(624, 284);
-            this.listBoxResultado.TabIndex = 28;
+            this.tipoOperacaoBindingSource.DataSource = typeof(MovimentacaoBancaria.Dominio.Models.ContaBase.TipoOperacao);
+            // 
+            // saveFileDialog1
+            // 
+            this.saveFileDialog1.DefaultExt = "txt";
+            this.saveFileDialog1.FileName = "Extrato.txt";
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1226, 623);
-            this.Controls.Add(this.listBoxResultado);
             this.Controls.Add(this.groupBox2);
             this.Controls.Add(this.txtLimite);
             this.Controls.Add(this.txtConta);
@@ -464,6 +491,7 @@
             this.groupBox2.PerformLayout();
             this.groupBox3.ResumeLayout(false);
             this.groupBox3.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.tipoOperacaoBindingSource)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -504,7 +532,9 @@
         private System.Windows.Forms.Button btnIncluirConta;
         private System.Windows.Forms.RadioButton rdbContaEspecial;
         private System.Windows.Forms.RadioButton rdbContaComum;
-        private System.Windows.Forms.ListBox listBoxResultado;
+        private System.Windows.Forms.BindingSource tipoOperacaoBindingSource;
+        private System.Windows.Forms.TextBox txtExtrato;
+        private System.Windows.Forms.SaveFileDialog saveFileDialog1;
     }
 }
 

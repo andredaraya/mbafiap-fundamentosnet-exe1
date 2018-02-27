@@ -20,7 +20,7 @@ namespace MovimentacaoBancaria.Dominio.Models
 
         public override string ToString()
         {
-            return $"Nome: {this.Nome}, CPF: {this.Cpf}, E-mail: {this.Email}, Qtd. Contas: {this.Contas.Count()}";
+            return $"Nome: {this.Nome}, CPF: {this.Cpf}, Qtd. Contas: {this.Contas.Count()}";
         }
     }
 }

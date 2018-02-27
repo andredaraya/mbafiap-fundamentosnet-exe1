@@ -14,6 +14,7 @@ namespace MovimentacaoBancaria.Infra.Repositorios
         public ContaEspecialRepositorio()
         {
             if (contas == null) contas = new List<ContaEspecial>();
+            RegistrarValidacao();
         }
 
         public ContaEspecial Buscar(object key, object key2 = null)
@@ -45,7 +46,7 @@ namespace MovimentacaoBancaria.Infra.Repositorios
             {
                 RespostaBase resposta = new RespostaBase() { Sucesso = true };
 
-                Regex regConta = new Regex(@"/^d{4}-d{1}$/");
+                Regex regConta = new Regex(@"^\d{4}-\d{1}$");
 
                 if (!regConta.IsMatch(objConta.NumeroConta))
                 {

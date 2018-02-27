@@ -46,7 +46,7 @@ namespace MovimentacaoBancaria.Infra.Repositorios
             {
                 RespostaBase resposta = new RespostaBase() { Sucesso = true };
 
-                Regex regConta = new Regex(@"/^d{4}-d{1}$/");
+                Regex regConta = new Regex(@"^\d{4}-\d{1}$", RegexOptions.None);
 
                 if (!regConta.IsMatch(objConta.NumeroConta))
                 {

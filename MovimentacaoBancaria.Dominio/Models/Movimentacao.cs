@@ -13,7 +13,7 @@ namespace MovimentacaoBancaria.Dominio.Models
 
         public ContaCorrente Conta { get; private set; }
         public DateTime Data { get; private set; }
-        public string Historico { get; private set; }
+        public string Historico { get; set; }
         public double Valor { get; private set; }
     }
 }
