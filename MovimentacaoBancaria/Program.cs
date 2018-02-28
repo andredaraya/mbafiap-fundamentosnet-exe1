@@ -11,7 +11,7 @@ namespace MovimentacaoBancaria
     {
         private static SimpleInjector.Container container;
 
-        /// <summary>
+        /// <summary> 
         /// The main entry point for the application.
         /// </summary>
         [STAThread]
